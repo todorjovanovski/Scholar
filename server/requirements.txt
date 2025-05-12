@@ -1,3 +1,15 @@
 fastapi
 uvicorn
 pydantic
+openai
+langchain
+pinecone
+python-dotenv
+tiktoken
+langchain_community
+langchain_experimental
+langchain-huggingface
+cryptography
+pypdf
+python-multipart
+streamlit
