@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import scholarLogo from "../assets/scholarLogo.png";
-import SidebarButton from "../components/SidebarButton";
+import scholarLogo from "../../assets/scholarLogo.png";
+import SidebarButton from "../../components/SidebarButton";
+
+import "./MainLayout.css";
 
 function MainLayout({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);

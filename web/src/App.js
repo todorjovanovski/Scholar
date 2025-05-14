@@ -1,4 +1,3 @@
-import React from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -6,11 +5,11 @@ import {
   Navigate,
 } from "react-router-dom";
 import "./App.css";
-import LandingPage from "./pages/LandingPage";
-import MainLayout from "./pages/MainLayout";
-import UploadPage from "./pages/UploadPage";
-import AskPage from "./pages/AskPage";
-import ErrorPage from "./pages/ErrorPage";
+import LandingPage from "./pages/LandingPage.js";
+import MainLayout from "./pages/MainLayout/MainLayout.js";
+import UploadPage from "./pages/UploadPage.js";
+import AskPage from "./pages/AskPage/AskPage.js";
+import ErrorPage from "./pages/ErrorPage.js";
 
 function App() {
   return (
@@ -22,7 +21,6 @@ function App() {
             <Route path="/upload" element={<UploadPage />} />
             <Route path="/ask" element={<AskPage />} />
           </Route>
-          <Route path="/error-test" element={<ErrorPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
