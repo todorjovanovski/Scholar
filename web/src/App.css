@@ -1,9 +1,9 @@
 :root {
   --primary-color: #257dbc;
   --secondary-color: #424769;
-  --accent-color: #7077A1;
-  --background-start: #EBF4F8;
-  --background-end: #E3F2FF;
+  --accent-color: #7077a1;
+  --background-start: #ebf4f8;
+  --background-end: #e3f2ff;
   --text-color: #257dbc;
   --button-hover: #1e6ca3;
   --gradient-start: #ffffff;
@@ -14,16 +14,19 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background: 
-    linear-gradient(120deg, var(--background-start), var(--background-end)),
+  background: linear-gradient(
+      120deg,
+      var(--background-start),
+      var(--background-end)
+    ),
     linear-gradient(rgba(37, 125, 188, 0.05) 2px, transparent 2px),
     linear-gradient(90deg, rgba(37, 125, 188, 0.05) 2px, transparent 2px);
   background-size: 100% 100%, 30px 30px, 30px 30px;
@@ -37,24 +40,32 @@ body {
 }
 
 .app::before {
-  content: '';
+  content: "";
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 50% -20%, rgba(37, 125, 188, 0.15), transparent 70%);
+  background: radial-gradient(
+    circle at 50% -20%,
+    rgba(37, 125, 188, 0.15),
+    transparent 70%
+  );
   z-index: 1;
 }
 
 .app::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
   right: -50%;
   bottom: -50%;
-  background: radial-gradient(circle at center, rgba(37, 125, 188, 0.03) 0%, transparent 70%);
+  background: radial-gradient(
+    circle at center,
+    rgba(37, 125, 188, 0.03) 0%,
+    transparent 70%
+  );
   z-index: 1;
   animation: subtle-rotate 30s linear infinite;
 }
@@ -97,7 +108,7 @@ body {
 }
 
 .button-container::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -20px;
   left: -20px;
@@ -107,8 +118,7 @@ body {
   border-radius: 20px;
   backdrop-filter: blur(10px);
   z-index: -1;
-  box-shadow: 
-    0 4px 6px rgba(37, 125, 188, 0.1),
+  box-shadow: 0 4px 6px rgba(37, 125, 188, 0.1),
     inset 0 1px 2px rgba(255, 255, 255, 0.9);
 }
 
@@ -130,7 +140,7 @@ body {
 }
 
 .button::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
@@ -169,12 +179,12 @@ h1 {
   font-weight: 600;
 }
 
-.upload-section, .ask-section {
+.upload-section,
+.ask-section {
   background: rgba(255, 255, 255, 0.9);
   padding: 2rem;
   border-radius: 16px;
-  box-shadow: 
-    0 4px 6px rgba(37, 125, 188, 0.1),
+  box-shadow: 0 4px 6px rgba(37, 125, 188, 0.1),
     inset 0 1px 2px rgba(255, 255, 255, 0.9);
   margin-bottom: 2rem;
   backdrop-filter: blur(10px);
@@ -183,8 +193,9 @@ h1 {
   z-index: 1;
 }
 
-.upload-section::before, .ask-section::before {
-  content: '';
+.upload-section::before,
+.ask-section::before {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -212,6 +223,178 @@ h1 {
   z-index: 2;
 }
 
+.layout-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  z-index: 3;
+}
+
+.layout-container.sidebar-hidden .layout-sidebar {
+  width: 280px;
+  transform: translateX(-100%);
+  padding: 0;
+  overflow: hidden;
+}
+
+.layout-container.sidebar-hidden .layout-content {
+  width: 100%;
+}
+
+.layout-container.sidebar-hidden .sidebar-toggle-button {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  bottom: auto;
+  right: auto;
+  z-index: 100;
+}
+
+.layout-sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-right: 1px solid rgba(37, 125, 188, 0.1);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, width 0.3s ease, padding 0.3s ease;
+}
+
+.layout-sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(37, 125, 188, 0.05),
+    transparent 50%
+  );
+  z-index: -1;
+}
+
+.sidebar-header {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.sidebar-header img {
+  max-width: 100%;
+  height: auto;
+  max-height: 60px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(37, 125, 188, 0.1));
+}
+
+.sidebar-toggle-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  bottom: auto;
+  right: auto;
+  z-index: 10;
+  padding: 8px 12px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(37, 125, 188, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    transform 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  line-height: 1;
+}
+
+.sidebar-toggle-button:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-color: var(--primary-color);
+  transform: scale(1.1);
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-nav li {
+  margin-bottom: 10px;
+}
+
+.sidebar-nav a {
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: var(--secondary-color);
+  border-radius: 8px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-nav a:hover {
+  background-color: rgba(37, 125, 188, 0.1);
+  color: var(--primary-color);
+}
+
+.layout-content {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.layout-content .container {
+  min-height: auto;
+  justify-content: flex-start;
+  padding-top: 20px;
+}
+
+.error-details-box {
+  background: rgba(255, 255, 255, 0.9);
+  margin-bottom: 20px;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(37, 125, 188, 0.05),
+    inset 0 1px 2px rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(37, 125, 188, 0.1);
+  margin-top: 20px;
+  max-width: 80%;
+  width: 100%;
+  overflow-x: auto;
+  color: #333;
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+
+.error-details-box p {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: var(--secondary-color);
+}
+
+.error-details-box pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
 @media (max-width: 768px) {
   .logo {
     width: 280px;
@@ -236,5 +419,78 @@ h1 {
     font-size: 1rem;
     padding: 1rem;
     margin: 0 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .layout-container {
+    flex-direction: column;
+  }
+
+  .layout-container.sidebar-hidden .layout-sidebar {
+    height: auto;
+    transform: translateY(-100%);
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .layout-sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-right: 1px solid rgba(37, 125, 188, 0.1);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease,
+      padding 0.3s ease;
+  }
+
+  .layout-container.sidebar-hidden .sidebar-toggle-button {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    bottom: auto;
+    right: auto;
+    z-index: 100;
+  }
+
+  .sidebar-toggle-button {
+    top: 10px;
+    left: 10px;
+    bottom: auto;
+    right: auto;
+  }
+
+  .sidebar-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .sidebar-nav ul {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .sidebar-nav li {
+    margin-bottom: 0;
+  }
+
+  .sidebar-nav a {
+    padding: 8px 12px;
+  }
+
+  .layout-content {
+    padding: 15px;
+  }
+
+  .layout-content .container {
+    padding-top: 15px;
   }
 }
