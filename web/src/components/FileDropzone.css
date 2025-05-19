@@ -1,0 +1,106 @@
+@import '../App.css';
+
+.file-preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.file-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+}
+
+.file-icon {
+  font-size: 48px;
+  color: var(--secondary-color);
+  margin-bottom: 0.5rem;
+}
+
+.file-name {
+  font-size: 0.9rem;
+  text-align: center;
+  word-break: break-word;
+  color: var(--secondary-color);
+
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.submit-button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #257dbc;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button:hover {
+  background-color: var(--button-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(37, 125, 188, 0.2);
+}
+
+.submit-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.upload-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border-width: 2px;
+  border-radius: 2px;
+  border-color: #eeeeee;
+  border-style: dashed;
+  background-color: #fafafa;
+  /*background: linear-gradient(120deg, rgba(255, 255, 255, 0.2), transparent);*/
+  color: #bdbdbd;
+  outline: none;
+  /*transition: border 0.24s ease-in-out;*/
+}
+
+
+.accept {
+  border-color: var(--primary-color);
+}
+
+.reject {
+  border-color: #ff1744;
+  color: #ff4368;
+  transition: border 0.15s ease-in
+}
+
+.dropzone-content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropzone-message {
+  pointer-events: none;
+  width: 400px;
+  margin: 0;
+  text-align: center;
+  word-break: break-word;
+}
