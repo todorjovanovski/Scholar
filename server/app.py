@@ -5,11 +5,27 @@ from fastapi import FastAPI, File, HTTPException, UploadFile, Form
 from fastapi.responses import JSONResponse
 import uvicorn
 
-from server.pinecone_utils import add_file_to_database, delete_vector_database, file_exists_in_database
-from server.query_utils import get_generated_text
+# from server.pinecone_utils import add_file_to_database, delete_vector_database, file_exists_in_database
+# from server.query_utils import get_generated_text
 
+from pinecone_utils import add_file_to_database, delete_vector_database, file_exists_in_database
+from query_utils import get_generated_text
+
+from fastapi.middleware.cors import CORSMiddleware
+
+origins = [
+    "http://localhost:3000",
+]
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.post("/upload_pdf")
 async def upload_file(file: UploadFile = File(...), title: str = Form(...)):
