@@ -5,12 +5,11 @@ from fastapi import FastAPI, File, HTTPException, UploadFile, Form
 from fastapi.responses import JSONResponse
 import uvicorn
 
-# from server.pinecone_utils import add_file_to_database, delete_vector_database, file_exists_in_database
-# from server.query_utils import get_generated_text
-
 from pinecone_utils import add_file_to_database, delete_vector_database, file_exists_in_database
 from query_utils import get_generated_text
 
+from server.pinecone_utils import add_file_to_database, delete_vector_database, file_exists_in_database
+from server.query_utils import get_generated_text
 from fastapi.middleware.cors import CORSMiddleware
 
 origins = [

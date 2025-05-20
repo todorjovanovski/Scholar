@@ -9,7 +9,9 @@ tiktoken
 langchain_community
 langchain_experimental
 langchain-huggingface
+langchain_pinecone
 cryptography
 pypdf
 python-multipart
 streamlit
+langchain_openai
