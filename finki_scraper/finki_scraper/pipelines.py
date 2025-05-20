@@ -12,7 +12,7 @@ class BaseJsonPipeline:
 
     def open_spider(self, spider):
         if spider.name == self.target_spider_name:
-            self.file = open(f"{self.json_file_name}.json", "w", encoding="utf-8")
+            self.file = open(f"data/{self.json_file_name}.json", "w", encoding="utf-8")
             self.file.write("[\n")
 
     def close_spider(self, spider):
