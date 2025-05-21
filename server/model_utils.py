@@ -7,7 +7,7 @@ load_dotenv(find_dotenv(), override=True)
 
 
 def get_embeddings_model(
-    model_name="BAAI/bge-en-icl",
+    model_name="sentence-transformers/all-mpnet-base-v2",
     model_kwargs={"device": "cpu"},
     encode_kwargs={"normalize_embeddings": False},
 ):
@@ -19,13 +19,8 @@ def get_embeddings_model(
     return embedding_model
 
 
-def get_llm_model(
-    repo_id="deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
-    task="text-generation",
-    max_new_tokens=8192,
-    do_sample=False,
-    repetition_penalty=1.03,
-):
+def get_llm_model(repo_id="mistralai/Mistral-7B-Instruct-v0.3", task="text-generation", max_new_tokens=512, do_sample=False, repetition_penalty=1.03):
+    #testing
     llm = HuggingFaceEndpoint(
         timeout=600,
         repo_id=repo_id,
