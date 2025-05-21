@@ -3,7 +3,7 @@ import { useDropzone } from 'react-dropzone';
 import { FaFileAlt } from 'react-icons/fa';
 import './FileDropzone.css';
 
-const FileDropzone = ({ onChange }) => {
+const FileDropzone = ({ onChange, resetSignal }) => {
   const containerRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const [acceptedFiles, setAcceptedFiles] = useState([]);
@@ -16,16 +16,9 @@ const FileDropzone = ({ onChange }) => {
   } = useDropzone({
     accept: { 'application/pdf': [] },
     onDrop: (files) => {
-      if (files.length > 0) {
-        setAcceptedFiles(files);
-
-        const fakeEvent = {
-          target: {
-            files: [files[0]]
-          }
-        };
-        onChange && onChange(fakeEvent);
-      }
+      console.log('Dropped files:', files);
+      setAcceptedFiles(files);
+      if (onChange) onChange(files);
     }
   });
 
@@ -35,6 +28,12 @@ const FileDropzone = ({ onChange }) => {
       setDimensions({ width, height });
     }
   }, [acceptedFiles]);
+
+  useEffect(() => {
+    if (resetSignal) {
+      setAcceptedFiles([]);
+    }
+  }, [resetSignal]);
 
   return (
     <section className="dropzone-container">
@@ -59,7 +58,7 @@ const FileDropzone = ({ onChange }) => {
           className="upload-box file-preview-container"
           style={{ width: dimensions.width }}
         >
-          {acceptedFiles.map((file) => (
+          {acceptedFiles.map((file, index) => (
             <div className="file-preview" key={file.name}>
               <FaFileAlt className="file-icon" />
               <p className="file-name">{file.name}</p>
