@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import FileDropzone from '../components/FileDropzone';
+import '../App.css';
 
 function UploadPage() {
   const [pdfFile, setPdfFile] = useState({});
@@ -28,13 +30,15 @@ function UploadPage() {
     <div className="container">
       <h1>Upload PDF</h1>
       <div className="upload-section">
-        <input type="file" accept=".pdf" onChange={handlePdfFile} />
-        <button className="button" onClick={uploadPdf}>
-          Upload
-        </button>
-        <button className="button" onClick={logFile}>
-          Log
-        </button>
+        <FileDropzone onChange={handlePdfFile}/>
+        <div className="button-group">
+          <button className="button" onClick={uploadPdf}>
+            Upload
+          </button>
+          <button className="button" onClick={logFile}>
+            Log
+          </button>
+        </div>
       </div>
       <button className="button" onClick={() => navigate("/")}>
         Back to Home
