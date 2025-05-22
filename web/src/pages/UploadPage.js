@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import FileDropzone from '../components/FileDropzone';
+import FileDropzone from "../components/FileDropzone";
 import { useFlashcards } from "../context/FlashcardContext";
 import Flashcard from "../components/Flashcard";
-import '../App.css';
+import "../App.css";
 
 function UploadPage() {
   const [pdfFile, setPdfFile] = useState({});
@@ -23,10 +23,6 @@ function UploadPage() {
       title: file.name || "Untitled",
     });
     setError("");
-  }
-
-  function logFile() {
-    console.log(pdfFile);
   }
 
   async function uploadPdf() {
@@ -61,10 +57,13 @@ function UploadPage() {
       queryForm.append("question", question);
       queryForm.append("chat_id", chatId);
 
-      const queryResponse = await fetch("http://localhost:8000/query_attachments", {
-        method: "POST",
-        body: queryForm,
-      });
+      const queryResponse = await fetch(
+        "http://localhost:8000/query_attachments",
+        {
+          method: "POST",
+          body: queryForm,
+        }
+      );
 
       if (!queryResponse.ok) {
         throw new Error("Failed to fetch flashcard.");
@@ -75,7 +74,7 @@ function UploadPage() {
       addFlashcard(data);
 
       setPdfFile({});
-      setResetDropzone(prev => !prev);
+      setResetDropzone((prev) => !prev);
     } catch (err) {
       console.error(err);
       setError("Something went wrong. Please try again.");
@@ -88,19 +87,15 @@ function UploadPage() {
     <div className="container">
       <h1>Upload PDF</h1>
       <div className="upload-section">
-        <FileDropzone onChange={handlePdfFile} resetSignal={resetDropzone}/>
+        <FileDropzone onChange={handlePdfFile} resetSignal={resetDropzone} />
         <div className="button-group">
+          {loading && <div className="spinner" />}
           <button className="button" onClick={uploadPdf} disabled={loading}>
             {loading ? "Uploading..." : "Upload"}
           </button>
-          <button className="button" onClick={logFile}>
-            Log
-          </button>
         </div>
 
-        {loading && <div className="spinner" />}
         {error && <p className="error-message">{error}</p>}
-
       </div>
       <button className="button" onClick={() => navigate("/")}>
         Back to Home
@@ -111,8 +106,7 @@ function UploadPage() {
           answer={qna.answer}
           onClose={() => setQna(null)}
         />
-      )
-      }
+      )}
     </div>
   );
 }
